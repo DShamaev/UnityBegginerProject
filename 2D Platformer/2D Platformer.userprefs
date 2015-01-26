@@ -1,0 +1,23 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Weapon.cs">
+    <Files>
+      <File FileName="Assets\Weapon.cs" Line="4" Column="38" />
+      <File FileName="C:\Users\Admin\Desktop\2D Assets Pack\Scripts\2D Platformer\Weapon.cs" Line="1" Column="1" />
+      <File FileName="C:\Users\Admin\Desktop\2D Assets Pack\Scripts\2D Platformer\WeaponVideo10.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Weapon.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

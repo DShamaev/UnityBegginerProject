@@ -352,15 +352,16 @@ begin
 
     while not keypressed do
     begin
-        Lev.display(2);Lev.put(12,2);
-        Antilopa.display(2);Antilopa.put(3,2);
-        Zebra.display(3);Zebra.put(4,3); 
-        Straus.display(4);Straus.put(8,2); 
-        Flamingo.display(3);Flamingo.put(11,3);
-        Secretar.display(2);Secretar.put(12,2);
-        Zmeya.display(2);Zmeya.put(6,2);
-        Krokodil.display(3);Krokodil.put(2,3);
-        Yasherica.display(2);Yasherica.put(7,2);
+        Lev.display(2);       Lev.put(12,2);
+        Antilopa.display(2);  Antilopa.put(3,2);
+        Zebra.display(3);     Zebra.put(4,3); 
+        Straus.display(4);    Straus.put(8,2); 
+        Flamingo.display(3);  Flamingo.put(11,3);
+        Secretar.display(2);  Secretar.put(12,2);
+        Zmeya.display(2);     Zmeya.put(6,2);
+        Krokodil.display(3);  Krokodil.put(2,3);
+        Yasherica.display(2); Yasherica.put(7,2);
+        
         delay(65000);
     end;
 

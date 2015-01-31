@@ -82,8 +82,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 470641450}
-  - 114: {fileID: 470641449}
   - 212: {fileID: 470641451}
+  - 114: {fileID: 470641449}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 470641448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ea92f812bf5e2746bab1b2978de4253, type: 3}
+  m_Script: {fileID: 11500000, guid: fed58a6a3deec1747a2bbe265ff89dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &470641450
@@ -109,11 +109,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 470641448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 2.5, y: 1.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 1665204373}
-  m_RootOrder: 0
+  m_Father: {fileID: 571384624}
+  m_RootOrder: 1
 --- !u!212 &470641451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 727a207d3c9b9c34fbc356c29e1ec34d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &571384619
 GameObject:
@@ -215,10 +215,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 571384619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -30}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1665204373}
+  - {fileID: 470641450}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1665204372
@@ -244,10 +245,9 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665204372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 65}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 2.5, y: 1.5, z: 1}
-  m_Children:
-  - {fileID: 470641450}
+  m_Children: []
   m_Father: {fileID: 571384624}
   m_RootOrder: 0
 --- !u!212 &1665204374

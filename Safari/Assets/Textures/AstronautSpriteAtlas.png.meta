@@ -62,20 +62,10 @@ TextureImporter:
         y: 224
         width: 17
         height: 32
-      alignment: 9
-      pivot: {x: .433352321, y: .562204659}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_1
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 191
-        width: 15
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AstronautSpriteAtlas_2
       rect:
         serializedVersion: 2
         x: 38
@@ -83,9 +73,9 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AstronautSpriteAtlas_3
+    - name: AstronautSpriteAtlas_2
       rect:
         serializedVersion: 2
         x: 71
@@ -93,9 +83,9 @@ TextureImporter:
         width: 15
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AstronautSpriteAtlas_4
+    - name: AstronautSpriteAtlas_3
       rect:
         serializedVersion: 2
         x: 103
@@ -103,7 +93,17 @@ TextureImporter:
         width: 15
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AstronautSpriteAtlas_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 191
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_5
       rect:
@@ -113,7 +113,7 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_6
       rect:
@@ -123,7 +123,7 @@ TextureImporter:
         width: 17
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_7
       rect:
@@ -133,7 +133,7 @@ TextureImporter:
         width: 15
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_8
       rect:
@@ -143,19 +143,9 @@ TextureImporter:
         width: 17
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_9
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 155
-        width: 24
-        height: 9
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AstronautSpriteAtlas_10
       rect:
         serializedVersion: 2
         x: 57
@@ -163,7 +153,17 @@ TextureImporter:
         width: 12
         height: 5
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AstronautSpriteAtlas_10
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 155
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AstronautSpriteAtlas_11
       rect:
@@ -173,7 +173,7 @@ TextureImporter:
         width: 5
         height: 4
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

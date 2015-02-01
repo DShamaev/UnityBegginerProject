@@ -250,8 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDistribution: 2
   verticalDistribution: 2
-  spawnTime: 5
-  spawnDelay: 3
+  spawnTime: 1
+  spawnDelay: .5
   enemies:
   - {fileID: 470641448}
   - {fileID: 470641448}
@@ -265,9 +265,9 @@ Transform:
   m_GameObject: {fileID: 698434829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1765577711}
   m_RootOrder: 2
 --- !u!1 &1665204372
 GameObject:
@@ -293,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 1665204372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 3, y: 3, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 1765577711}
   m_RootOrder: 1
@@ -341,11 +341,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1765577710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.03373384, y: .271859169, z: 8.03578091}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470641450}
   - {fileID: 1665204373}
+  - {fileID: 698434831}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!1001 &2127097296
@@ -353,7 +354,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1765577711}
     m_Modifications:
     - target: {fileID: 401730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
       propertyPath: m_LocalPosition.x
@@ -395,6 +396,10 @@ Prefab:
     - target: {fileID: 101730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
       propertyPath: m_Name
       value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 401730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}

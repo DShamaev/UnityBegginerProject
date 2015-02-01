@@ -9,23 +9,44 @@ public class Spawner : MonoBehaviour {
 
 	public float horizontalDistribution = 1;
 	public float verticalDistribution = 1;
-	public float TreeCount = 10;
+	public int TreeCount = 10;
 
 	/// <summary>Array of objects prefabs.</summary>
-	public GameObject[] enemies;
+	public GameObject[] treePrefabProvider;
+	public GameObject[] treesArray;
 
 	float x,y,z;
 	
 	void Spawn (int i)
 	{
-		//Determine object spawn position
-		var spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
+		//Generate random source for instance
+		int enemyIndex = Random.Range(0, treePrefabProvider.Length);
 
-		int enemyIndex = Random.Range(0, enemies.Length);
+		//Determine object spawn position
+		Vector3 spawnPosition = new Vector3();
+		while(true){
+			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
+			if(isNotIntersectedWithOthers(i,enemyIndex,spawnPosition)){
+				break;
+			};
+		};
 
 		// Instantiate object.
-		GameObject tree = Instantiate(enemies[enemyIndex], spawnPosition, transform.rotation) as GameObject;
-		tree.transform.parent = transform.parent;
+		treesArray[i] = Instantiate(treePrefabProvider[enemyIndex], spawnPosition, transform.rotation) as GameObject;
+		treesArray[i].transform.parent = transform.parent;
+	}
+
+	bool isNotIntersectedWithOthers(int size,int index, Vector3 pos){
+		for (int i=0; i<size; i++) {
+			Rect objectArea = new Rect(treesArray[i].transform.position.x-treesArray[i].renderer.bounds.size.x/2,
+			                           treesArray[i].transform.position.x+treesArray[i].renderer.bounds.size.x/2,
+			                           treesArray[i].transform.position.y-treesArray[i].renderer.bounds.size.y/2,
+			                           treesArray[i].transform.position.y+treesArray[i].renderer.bounds.size.y/2);
+			if(objectArea.Contains(pos)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	void Start ()
@@ -36,6 +57,7 @@ public class Spawner : MonoBehaviour {
 
 		// Start calling the Spawn function repeatedly after a delay .
 		//
+		treesArray = new GameObject[TreeCount];
 		for (int i=0; i<TreeCount; i++) {
 			Spawn (i);
 		}

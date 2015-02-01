@@ -37,12 +37,11 @@ public class Spawner : MonoBehaviour {
 	}
 
 	bool isNotIntersectedWithOthers(int size,int index, Vector3 pos){
+
 		for (int i=0; i<size; i++) {
-			Rect objectArea = new Rect(treesArray[i].transform.position.x-treesArray[i].renderer.bounds.size.x/2,
-			                           treesArray[i].transform.position.x+treesArray[i].renderer.bounds.size.x/2,
-			                           treesArray[i].transform.position.y-treesArray[i].renderer.bounds.size.y/2,
-			                           treesArray[i].transform.position.y+treesArray[i].renderer.bounds.size.y/2);
-			if(objectArea.Contains(pos)){
+			float maxDimension = treesArray[i].renderer.bounds.size.x > treesArray[i].renderer.bounds.size.y ? 
+				treesArray[i].renderer.bounds.size.x : treesArray[i].renderer.bounds.size.y;
+			if(Vector3.Distance(pos, treesArray[i].transform.position) < maxDimension){
 				return false;
 			}
 		}

@@ -214,9 +214,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDistribution: 10
   verticalDistribution: 10
-  TreeCount: 10000
-  enemies:
+  TreeCount: 100
+  treePrefabProvider:
   - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
+  - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
+  - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
+  - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
+  treesArray: []
 --- !u!4 &698434831
 Transform:
   m_ObjectHideFlags: 0

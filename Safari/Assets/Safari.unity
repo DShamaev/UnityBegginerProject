@@ -264,8 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDistribution: 2
   verticalDistribution: 2
-  spawnTime: 1
-  spawnDelay: .5
+  TreeCount: 10
   enemies:
   - {fileID: 470641448}
   - {fileID: 470641448}
@@ -279,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 698434829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 1765577711}
   m_RootOrder: 2
@@ -414,6 +413,14 @@ Prefab:
     - target: {fileID: 401730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
       propertyPath: m_LocalScale.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 401730, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a41d4e89e6b2ad64a82911883cc27d21, type: 2}

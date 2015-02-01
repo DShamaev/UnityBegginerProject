@@ -5,7 +5,7 @@ public class WorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		const int TREE_COUNT = 10; // count of visible trees after launch
+		/*const int TREE_COUNT = 10; // count of visible trees after launch
 		const int WATER_POOL_COUNT = 5; // count of water pools
 
 		var vertExtent = Camera.main.camera.orthographicSize;    
@@ -20,7 +20,7 @@ public class WorldGenerator : MonoBehaviour {
 			sprite = new Sprite();
 		sprite = Sprite.Create(newPicture, new Rect(0, 0, 100, 100),new Vector2(Random.Range (horzExtent, horzExtent), Random.Range(-vertExtent, vertExtent)),100.0f);
 			renderer.sprite = sprite;
-		//}
+		//}*/
 
 	}
 	

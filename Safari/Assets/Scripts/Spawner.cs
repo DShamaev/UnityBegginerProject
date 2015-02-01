@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Spawner.
@@ -16,6 +15,9 @@ public class Spawner : MonoBehaviour {
 	/// <summary>Count of generated objects</summary>
 	public int generationCount = 10;
 
+	/// <summary>Number of attempts before overlapping will be allow</summary>
+	public int allowOverlapingAfter = 0;
+
 	/// <summary>Array of objects prefabs</summary>
 	public GameObject[] objectsPrefabs;
 
@@ -27,7 +29,10 @@ public class Spawner : MonoBehaviour {
 
 	/// <summary>If distance between spites lower then overlapping will be</summary>
 	float overlappingRadius = 0;
-	
+
+	/// <summary>Counter for unsucessfull non-overlapping placements</summary>
+	int unsuccessfulAttempts = 0;
+
 	void Spawn (int i)
 	{
 		//Select random prefab for instance
@@ -39,7 +44,7 @@ public class Spawner : MonoBehaviour {
 		Vector3 spawnPosition = new Vector3();
 		while(true){
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
-			if(isNotIntersectedWithOthers(i,spawnPosition)){
+			if(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)){
 				break;
 			};
 		};
@@ -50,9 +55,9 @@ public class Spawner : MonoBehaviour {
 	}
 
 	bool isNotIntersectedWithOthers(int index, Vector3 pos){
-
 		for (int i=0; i<index; i++) {
 			if(Vector3.Distance(pos, generatedObjects[i].transform.position) < overlappingRadius){
+				unsuccessfulAttempts++;
 				return false;
 			}
 		}
@@ -74,7 +79,7 @@ public class Spawner : MonoBehaviour {
 				overlappingRadius = radius;
 			}
 		}
-		
+
 		// Spawn objects
 		generatedObjects = new GameObject[generationCount];
 		for (int i=0; i<generationCount; i++) {

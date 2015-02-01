@@ -212,11 +212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f7ea2c633c5814c8d80ce6b00faff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalDistribution: 10
-  verticalDistribution: 10
-  generationCount: 1500
+  horizontalDistribution: 20
+  verticalDistribution: 20
+  generationCount: 3200
+  allowOverlapingAfter: 20000
   objectsPrefabs:
   - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
+  - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
   generatedObjects: []
 --- !u!4 &698434831
 Transform:
@@ -254,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 1665204372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 0}
   m_Children: []
   m_Father: {fileID: 1765577711}
   m_RootOrder: 0

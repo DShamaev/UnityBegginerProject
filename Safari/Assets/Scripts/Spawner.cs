@@ -7,41 +7,52 @@ using System.Collections;
 /// </summary>
 public class Spawner : MonoBehaviour {
 
+	/// <summary>Generated objects distribution in X axis</summary>
 	public float horizontalDistribution = 1;
+
+	/// <summary>Generated objects distribution in Y axis</summary>
 	public float verticalDistribution = 1;
-	public int TreeCount = 10;
 
-	/// <summary>Array of objects prefabs.</summary>
-	public GameObject[] treePrefabProvider;
-	public GameObject[] treesArray;
+	/// <summary>Count of generated objects</summary>
+	public int generationCount = 10;
 
-	float x,y,z;
+	/// <summary>Array of objects prefabs</summary>
+	public GameObject[] objectsPrefabs;
+
+	/// <summary>Array of generated objects</summary>
+	public GameObject[] generatedObjects;
+
+	/// <summary>Coordinates of spawner</summary>
+	float x,y,z = 0;
+
+	/// <summary>If distance between spites lower then overlapping will be</summary>
+	float overlappingRadius = 0;
 	
 	void Spawn (int i)
 	{
-		//Generate random source for instance
-		int enemyIndex = Random.Range(0, treePrefabProvider.Length);
+		//Select random prefab for instance
+		int prefabIndex = Random.Range(0, objectsPrefabs.Length);
 
 		//Determine object spawn position
+		//Trying to select non-overlapping position 
+		//calculating distance from generated position to already generated position
 		Vector3 spawnPosition = new Vector3();
 		while(true){
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
-			if(isNotIntersectedWithOthers(i,enemyIndex,spawnPosition)){
+			if(isNotIntersectedWithOthers(i,spawnPosition)){
 				break;
 			};
 		};
 
 		// Instantiate object.
-		treesArray[i] = Instantiate(treePrefabProvider[enemyIndex], spawnPosition, transform.rotation) as GameObject;
-		treesArray[i].transform.parent = transform.parent;
+		generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		generatedObjects[i].transform.parent = transform.parent;
 	}
 
-	bool isNotIntersectedWithOthers(int size,int index, Vector3 pos){
+	bool isNotIntersectedWithOthers(int index, Vector3 pos){
 
-		for (int i=0; i<size; i++) {
-			float maxDimension = treesArray[i].renderer.bounds.size.x > treesArray[i].renderer.bounds.size.y ? 
-				treesArray[i].renderer.bounds.size.x : treesArray[i].renderer.bounds.size.y;
-			if(Vector3.Distance(pos, treesArray[i].transform.position) < maxDimension){
+		for (int i=0; i<index; i++) {
+			if(Vector3.Distance(pos, generatedObjects[i].transform.position) < overlappingRadius){
 				return false;
 			}
 		}
@@ -50,14 +61,23 @@ public class Spawner : MonoBehaviour {
 
 	void Start ()
 	{
+		//Write spawner position
 		x = transform.position.x;
 		y = transform.position.y;
 		z = transform.position.z;
 
-		// Start calling the Spawn function repeatedly after a delay .
-		//
-		treesArray = new GameObject[TreeCount];
-		for (int i=0; i<TreeCount; i++) {
+		//Determine overllaping radius
+		//Approximate overllaping radius as highest _diameter_ of circumscribed circles around prefabs
+		for (int i=0; i<objectsPrefabs.Length; i++) {
+			var radius = Mathf.Sqrt(Mathf.Pow(objectsPrefabs[i].renderer.bounds.size.x,2)+Mathf.Pow(objectsPrefabs[i].renderer.bounds.size.y,2));
+			if(overlappingRadius < radius){
+				overlappingRadius = radius;
+			}
+		}
+		
+		// Spawn objects
+		generatedObjects = new GameObject[generationCount];
+		for (int i=0; i<generationCount; i++) {
 			Spawn (i);
 		}
 	}

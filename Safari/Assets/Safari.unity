@@ -248,6 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f7ea2c633c5814c8d80ce6b00faff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalDistribution: 2
+  verticalDistribution: 2
   spawnTime: 5
   spawnDelay: 3
   enemies:
@@ -255,11 +257,6 @@ MonoBehaviour:
   - {fileID: 470641448}
   - {fileID: 470641448}
   - {fileID: 470641448}
-  xMin: -5
-  xMax: 5
-  yMin: -5
-  yMax: 5
-  z: 3
 --- !u!4 &698434831
 Transform:
   m_ObjectHideFlags: 0

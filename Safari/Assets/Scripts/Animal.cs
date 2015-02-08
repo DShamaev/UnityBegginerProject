@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Animal : GameObject {
+public abstract class Animal {
+
+	public GameObject instObject; //var for game object
 
 	public enum AnimalState{
 		IDLE, //do nothing
@@ -21,15 +23,9 @@ public class Animal : GameObject {
 
 	//animal already has position variable in this.transform.position
 	//so we need move function
-	public abstract void Move(){
+	public abstract void Move ();
 
-	}
+	public abstract void ScanArea ();
 
-	public abstract void ScanArea(){
-	
-	}
-
-	public abstract void changeState(AnimalState newState){
-	
-	}
+	public abstract void changeState (AnimalState newState);
 }

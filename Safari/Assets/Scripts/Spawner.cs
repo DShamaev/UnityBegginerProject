@@ -42,11 +42,8 @@ public class Spawner : MonoBehaviour {
 		//Trying to select non-overlapping position 
 		//calculating distance from generated position to already generated position
 		Vector3 spawnPosition = new Vector3();
-		while(true){
+		while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0))){
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
-			if(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)){
-				break;
-			};
 		};
 
 		// Instantiate object.

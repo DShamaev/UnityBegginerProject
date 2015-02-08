@@ -42,9 +42,9 @@ public class Spawner : MonoBehaviour {
 		//Trying to select non-overlapping position 
 		//calculating distance from generated position to already generated position
 		Vector3 spawnPosition = new Vector3();
-		while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0))){
+		do{
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
-		};
+		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
 		// Instantiate object.
 		generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;

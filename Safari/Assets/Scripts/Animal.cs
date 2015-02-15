@@ -16,9 +16,8 @@ public abstract class Animal {
 	//function for instantiation and adding to scene
 	//will have same implementation in parent
 	//similar to GetInstance
-	public static Animal Spawn(){
-		Animal instance = null;
-		return instance;
+	protected static Animal Spawn(){
+		return null;
 	}
 
 	//animal already has position variable in this.transform.position

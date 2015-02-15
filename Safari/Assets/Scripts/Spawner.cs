@@ -13,7 +13,10 @@ public class Spawner : MonoBehaviour {
 	public float verticalDistribution = 1;
 
 	/// <summary>Count of generated objects</summary>
-	public int generationCount = 10;
+	public int treesGenerationCount = 200;
+
+	/// <summary>Count of generated animal objects</summary>
+	public int animalGenerationCount = 20;
 
 	/// <summary>Number of attempts before overlapping will be allow</summary>
 	public int allowOverlapingAfter = 0;
@@ -23,10 +26,11 @@ public class Spawner : MonoBehaviour {
 
 	/// <summary>Array of generated objects</summary>
 	public GameObject[] generatedObjects;
-	// 111
+
+	/// <summary>Array of animal prefabs</summary>
 	public GameObject[] animalPrefabs;
-	// 222
-	public enum objectType {
+
+	public enum ObjectType {
 		PLANT,
 		ANIMAL,
 	};
@@ -40,10 +44,10 @@ public class Spawner : MonoBehaviour {
 	/// <summary>Counter for unsucessfull non-overlapping placements</summary>
 	int unsuccessfulAttempts = 0;
 
-	void Spawn (int i)
+	void Spawn (int i, ObjectType objectType)
 	{
 		//Select random prefab for instance
-		int prefabIndex = Random.Range(0, objectsPrefabs.Length);
+		int prefabIndex = Random.Range(0, objectType == ObjectType.ANIMAL ? animalPrefabs.Length : objectsPrefabs.Length);
 
 		//Determine object spawn position
 		//Trying to select non-overlapping position 
@@ -53,16 +57,19 @@ public class Spawner : MonoBehaviour {
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
 		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
-		generatedObjects[i] = Instantiate(objectType == Animal ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
-		if(objectType == Animal){
-			Mammal m = Mammal.Spawn ();
-			Rigidbody2D mal = m.instObject.AddComponent<Rigidbody2D> ();
+		generatedObjects[i] = Instantiate(objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		generatedObjects[i].transform.parent = transform.parent;
+
+
+		if (objectType == ObjectType.ANIMAL) {
+			Mammal mammal = Mammal.Spawn() as Mammal;
+			mammal.instObject = generatedObjects[i];
+			Rigidbody2D mal = mammal.instObject.AddComponent<Rigidbody2D> ();
+			mal.gravityScale = 0;
 			//add rigid body
 		}
+		generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;
 		generatedObjects[i].transform.parent = transform.parent;
-		// Instantiate object.
-	//	generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
-	//	generatedObjects[i].transform.parent = transform.parent;
 	}
 
 	bool isNotIntersectedWithOthers(int index, Vector3 pos){
@@ -92,9 +99,13 @@ public class Spawner : MonoBehaviour {
 		}
 
 		// Spawn objects
-		generatedObjects = new GameObject[generationCount];
-		for (int i=0; i<generationCount; i++) {
-			Spawn (i);
+		generatedObjects = new GameObject[treesGenerationCount];
+		for (int i=0; i<treesGenerationCount; i++) {
+			Spawn (i,ObjectType.PLANT);
+		}
+
+		for (int i=0; i<animalGenerationCount; i++) {
+			Spawn (i,ObjectType.ANIMAL);
 		}
 	}
 }

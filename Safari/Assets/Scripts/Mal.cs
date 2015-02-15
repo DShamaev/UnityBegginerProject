@@ -3,16 +3,17 @@ using System.Collections;
 
 public class Mammal:Animal {
 	
-	public static Mammal Spawn(){
-		Mammal instance = null;
-		return instance;
+	public static Animal Spawn(){
+		Mammal instance = new Mammal ();
+		return instance as Animal;
 	}
 	
-	//animal already has position variable in this.transform.position
-	//so we need move function
-	public void Move ();
+	override public void Move (){
+	}
 	
-	public void ScanArea ();
+	override public void ScanArea (){
+	}
 	
-	public void changeState (AnimalState newState);
+	override public void changeState (AnimalState newState){
+	}
 }

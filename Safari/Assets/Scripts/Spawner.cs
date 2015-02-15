@@ -23,6 +23,13 @@ public class Spawner : MonoBehaviour {
 
 	/// <summary>Array of generated objects</summary>
 	public GameObject[] generatedObjects;
+	// 111
+	public GameObject[] animalPrefabs;
+	// 222
+	public enum objectType {
+		PLANT,
+		ANIMAL,
+	};
 
 	/// <summary>Coordinates of spawner</summary>
 	float x,y,z = 0;
@@ -46,9 +53,16 @@ public class Spawner : MonoBehaviour {
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
 		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
-		// Instantiate object.
-		generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		generatedObjects[i] = Instantiate(objectType == Animal ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		if(objectType == Animal){
+			Mammal m = Mammal.Spawn ();
+			Rigidbody2D mal = m.instObject.AddComponent<Rigidbody2D> ();
+			//add rigid body
+		}
 		generatedObjects[i].transform.parent = transform.parent;
+		// Instantiate object.
+	//	generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+	//	generatedObjects[i].transform.parent = transform.parent;
 	}
 
 	bool isNotIntersectedWithOthers(int index, Vector3 pos){

@@ -9,8 +9,26 @@ using System.Collections;
 // @NOTE Vertical only, you can easily expand this to horizontal with a little tweaking
 public class RepeatSpriteBoundary : MonoBehaviour {
 	SpriteRenderer sprite;
+
+	/// <summary>Generated objects distribution in X axis</summary>
+	public float horizontalDistribution = 1;
 	
+	/// <summary>Generated objects distribution in Y axis</summary>
+	public float verticalDistribution = 1;
+	
+	/// <summary>Count of generated objects</summary>
+	public int generationCount = 10;
+	/// <summary>Array of objects prefabs</summary>
+	public GameObject[] objectsPrefabs;
+	
+	/// <summary>Array of generated objects</summary>
+	public GameObject[] generatedObjects;
+
+	public GameObject[] gameObject;
 	void Awake () {
+
+
+
 		// Get the current sprite with an unscaled size
 		sprite = GetComponent<SpriteRenderer>();
 		Vector2 spriteSize = new Vector2(sprite.bounds.size.x / transform.localScale.x, sprite.bounds.size.y / transform.localScale.y);
@@ -19,15 +37,19 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		GameObject childPrefab = new GameObject();
 		SpriteRenderer childSprite = childPrefab.AddComponent<SpriteRenderer>();
 		childPrefab.transform.position = transform.position;
-		childSprite.sprite = sprite.sprite;
-		
-		// Loop through and spit out repeated tiles
+		//childSprite.sprite = gameObject[prefabIndex].transform.GetComponent<SpriteRenderer>().sprite;
+
+		//gameObject.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load("Resources/Textures");
+			
+
+ 		// Loop through and spit out repeated tiles
 		GameObject child;
 		for (int i = 1; i<5; i++)  {
 			for (int j= 1; j<5; j++){
 				child = Instantiate (childPrefab) as GameObject;
 				child.transform.position = transform.position + (new Vector3(spriteSize.x*i,spriteSize.y*j, +9));
-										
+				int prefabIndex = Random.Range(0, objectsPrefabs.Length);
+				child.transform.GetComponent<SpriteRenderer>().sprite = gameObject[prefabIndex].transform.GetComponent<SpriteRenderer>().sprite;								
 
 				child.transform.parent = transform;
 			}

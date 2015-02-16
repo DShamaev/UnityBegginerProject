@@ -214,12 +214,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDistribution: 20
   verticalDistribution: 20
-  generationCount: 3200
+  treesGenerationCount: 200
+  animalGenerationCount: 20
   allowOverlapingAfter: 20000
   objectsPrefabs:
   - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
   - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
   generatedObjects: []
+  animalPrefabs:
+  - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
 --- !u!4 &698434831
 Transform:
   m_ObjectHideFlags: 0
@@ -239,6 +242,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: gameObject.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: objectsPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: generatedObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 434490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
       propertyPath: m_LocalPosition.x
       value: -26.1000004
@@ -275,6 +290,47 @@ Prefab:
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: gameObject.Array.data[0]
+      value: 
+      objectReference: {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: generatedObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: objectsPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: objectsPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: generatedObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: gameObject.Array.data[1]
+      value: 
+      objectReference: {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+    - target: {fileID: 21246712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53a1c222ca66cc44c9ef96634f39812a,
+        type: 3}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: objectsPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: generatedObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
+    - target: {fileID: 11446712, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+      propertyPath: gameObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
   m_RootGameObject: {fileID: 2033579298}
@@ -388,6 +444,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed58a6a3deec1747a2bbe265ff89dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalDistribution: 1
+  verticalDistribution: 1
+  generationCount: 10
+  objectsPrefabs:
+  - {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+  - {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+  - {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
+  generatedObjects:
+  - {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+  - {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+  - {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
+  gameObject:
+  - {fileID: 134490, guid: a74ceb793441cb54cb722976ea65fc65, type: 2}
+  - {fileID: 108858, guid: ae2e4b662a2d7484f9b06c38bd2909b2, type: 2}
+  - {fileID: 121608, guid: ea5a68fda50224340bc6cef28d77807e, type: 2}
 --- !u!212 &2033579300
 SpriteRenderer:
   m_ObjectHideFlags: 0

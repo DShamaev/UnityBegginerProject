@@ -57,15 +57,13 @@ public class Spawner : MonoBehaviour {
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
 		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
-		generatedObjects[i] = Instantiate(objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
-		generatedObjects[i].transform.parent = transform.parent;
+	//	generatedObjects[i] = Instantiate(objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+	//	generatedObjects[i].transform.parent = transform.parent;
 
 
 		if (objectType == ObjectType.ANIMAL) {
 			Mammal mammal = Mammal.Spawn() as Mammal;
 			mammal.instObject = generatedObjects[i];
-			Rigidbody2D mal = mammal.instObject.AddComponent<Rigidbody2D> ();
-			mal.gravityScale = 0;
 			//add rigid body
 		}
 		generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;

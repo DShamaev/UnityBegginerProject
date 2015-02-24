@@ -222,7 +222,9 @@ MonoBehaviour:
   - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
   generatedObjects: []
   animalPrefabs:
-  - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
+  - {fileID: 121780, guid: fa71ba1e1e62ff04981270c6cee8d80d, type: 2}
+  - {fileID: 125088, guid: 6927e38f4e887674b82febf9963edce3, type: 2}
+  - {fileID: 100670, guid: 86de5741605a5f646b0a1ae7300c2487, type: 2}
 --- !u!4 &698434831
 Transform:
   m_ObjectHideFlags: 0

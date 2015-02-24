@@ -17,7 +17,7 @@ public abstract class Animal {
 	//will have same implementation in parent
 	//similar to GetInstance
 	protected static Animal Spawn(){
-		return null;
+		return null;	
 	}
 
 	//animal already has position variable in this.transform.position

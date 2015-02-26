@@ -40,6 +40,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed58a6a3deec1747a2bbe265ff89dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalDistribution: 1
+  verticalDistribution: 1
+  generationCount: 10
+  objectsPrefabs: []
+  generatedObjects: []
+  gameObject: []
 --- !u!212 &21246712
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -60,7 +66,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 53a1c222ca66cc44c9ef96634f39812a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a9419b137c79674f95f15ca074df261, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

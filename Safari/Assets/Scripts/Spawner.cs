@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour {
 	public int allowOverlapingAfter = 0;
 
 	/// <summary>Array of objects prefabs</summary>
-	public GameObject[] objectsPrefabs;
+	public GameObject[] treesPrefabs;
 
 	/// <summary>Array of generated objects</summary>
 	public GameObject[] generatedObjects;
@@ -30,9 +30,13 @@ public class Spawner : MonoBehaviour {
 	/// <summary>Array of animal prefabs</summary>
 	public GameObject[] animalPrefabs;
 
+	///<summary>Array of water prefabs</summary>
+	public GameObject[] waterPrefabs;
+
 	public enum ObjectType {
 		PLANT,
 		ANIMAL,
+		WATER, 
 	};
 
 	/// <summary>Coordinates of spawner</summary>
@@ -47,7 +51,25 @@ public class Spawner : MonoBehaviour {
 	void Spawn (int i, ObjectType objectType)
 	{
 		//Select random prefab for instance
-		int prefabIndex = Random.Range(0, objectType == ObjectType.ANIMAL ? animalPrefabs.Length : objectsPrefabs.Length);
+		//int prefabIndex = Random.Range(0, objectType == ObjectType.ANIMAL ? animalPrefabs.Length : treesPrefabs.Length);
+		int maxLength = 0; 
+		GameObject[] objectsPrefabs;
+		switch (objectType) {
+			case ObjectType.ANIMAL: 
+				maxLength = animalPrefabs.Length; 
+				objectsPrefabs = animalPrefabs;
+				break;
+			case ObjectType.PLANT: 
+				maxLength = treesPrefabs.Length; 
+				objectsPrefabs = treesPrefabs;
+				break;
+			case ObjectType.WATER: 
+				maxLength = waterPrefabs.Length; 
+				objectsPrefabs = waterPrefabs;
+				break;
+		} 
+		//Select random prefab for instance
+		int prefabIndex = Random.Range(0, maxLength);
 
 		//Determine object spawn position
 		//Trying to select non-overlapping position 
@@ -57,17 +79,20 @@ public class Spawner : MonoBehaviour {
 			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
 		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
-	//	generatedObjects[i] = Instantiate(objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
-	//	generatedObjects[i].transform.parent = transform.parent;
+		generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		generatedObjects[i].transform.parent = transform.parent;
 
 
 		if (objectType == ObjectType.ANIMAL) {
 			Mammal mammal = Mammal.Spawn() as Mammal;
 			mammal.instObject = generatedObjects[i];
-			//add rigid body
 		}
-		generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : objectsPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;
-		generatedObjects[i].transform.parent = transform.parent;
+		if (objectType == ObjectType.WATER) {
+			//задать размер и форму обьекта
+			//generatedObjects[i].transform.
+		}
+		//generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : treesPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;
+		//generatedObjects[i].transform.parent = transform.parent;
 	}
 
 	bool isNotIntersectedWithOthers(int index, Vector3 pos){
@@ -89,8 +114,8 @@ public class Spawner : MonoBehaviour {
 
 		//Determine overllaping radius
 		//Approximate overllaping radius as highest _diameter_ of circumscribed circles around prefabs
-		for (int i=0; i<objectsPrefabs.Length; i++) {
-			var radius = Mathf.Sqrt(Mathf.Pow(objectsPrefabs[i].renderer.bounds.size.x,2)+Mathf.Pow(objectsPrefabs[i].renderer.bounds.size.y,2));
+		for (int i=0; i<treesPrefabs.Length; i++) {
+			var radius = Mathf.Sqrt(Mathf.Pow(treesPrefabs[i].renderer.bounds.size.x,2)+Mathf.Pow(treesPrefabs[i].renderer.bounds.size.y,2));
 			if(overlappingRadius < radius){
 				overlappingRadius = radius;
 			}

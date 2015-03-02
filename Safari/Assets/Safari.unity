@@ -216,8 +216,9 @@ MonoBehaviour:
   verticalDistribution: 20
   treesGenerationCount: 200
   animalGenerationCount: 20
+  waterGenerationCount: 10
   allowOverlapingAfter: 20000
-  objectsPrefabs:
+  treesPrefabs:
   - {fileID: 122936, guid: 5e83c6047bca8584599a9492d4f4a305, type: 2}
   - {fileID: 135706, guid: 894780d9e3ae09e43b2eb883b11ecc5a, type: 2}
   generatedObjects: []
@@ -225,6 +226,8 @@ MonoBehaviour:
   - {fileID: 121780, guid: fa71ba1e1e62ff04981270c6cee8d80d, type: 2}
   - {fileID: 125088, guid: 6927e38f4e887674b82febf9963edce3, type: 2}
   - {fileID: 100670, guid: 86de5741605a5f646b0a1ae7300c2487, type: 2}
+  waterPrefabs:
+  - {fileID: 137864, guid: 7054cd260e9cc9341bbc1b355d283084, type: 2}
 --- !u!4 &698434831
 Transform:
   m_ObjectHideFlags: 0

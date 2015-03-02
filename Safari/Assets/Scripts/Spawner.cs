@@ -12,11 +12,14 @@ public class Spawner : MonoBehaviour {
 	/// <summary>Generated objects distribution in Y axis</summary>
 	public float verticalDistribution = 1;
 
-	/// <summary>Count of generated objects</summary>
+	/// <summary>Count of trees generated objects</summary>
 	public int treesGenerationCount = 200;
 
 	/// <summary>Count of generated animal objects</summary>
 	public int animalGenerationCount = 20;
+
+	/// <summary>Count of generated water objects</summary>
+	public int waterGenerationCount = 10;
 
 	/// <summary>Number of attempts before overlapping will be allow</summary>
 	public int allowOverlapingAfter = 0;
@@ -53,7 +56,7 @@ public class Spawner : MonoBehaviour {
 		//Select random prefab for instance
 		//int prefabIndex = Random.Range(0, objectType == ObjectType.ANIMAL ? animalPrefabs.Length : treesPrefabs.Length);
 		int maxLength = 0; 
-		GameObject[] objectsPrefabs;
+		GameObject[] objectsPrefabs = null;
 		switch (objectType) {
 			case ObjectType.ANIMAL: 
 				maxLength = animalPrefabs.Length; 
@@ -69,7 +72,7 @@ public class Spawner : MonoBehaviour {
 				break;
 		} 
 		//Select random prefab for instance
-		int prefabIndex = Random.Range(0, maxLength);
+		int prefabIndex = Random.Range(0, maxLength-1);
 
 		//Determine object spawn position
 		//Trying to select non-overlapping position 
@@ -89,7 +92,7 @@ public class Spawner : MonoBehaviour {
 		}
 		if (objectType == ObjectType.WATER) {
 			//задать размер и форму обьекта
-			//generatedObjects[i].transform.
+			generatedObjects[i].transform.localScale += new Vector3(Random.Range (0f, 4f),Random.Range (0f, 4f),Random.Range (0f, 4f));
 		}
 		//generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : treesPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;
 		//generatedObjects[i].transform.parent = transform.parent;
@@ -129,6 +132,10 @@ public class Spawner : MonoBehaviour {
 
 		for (int i=0; i<animalGenerationCount; i++) {
 			Spawn (i,ObjectType.ANIMAL);
+		}
+
+		for (int i=0; i<waterGenerationCount; i++) {
+			Spawn (i,ObjectType.WATER);
 		}
 	}
 }

@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour {
 				break;
 		} 
 		//Select random prefab for instance
-		int prefabIndex = Random.Range(0, maxLength-1);
+		int prefabIndex = Random.Range(0, maxLength);
 
 		//Determine object spawn position
 		//Trying to select non-overlapping position 

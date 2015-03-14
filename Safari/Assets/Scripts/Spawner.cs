@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour {
 	};
 
 	/// <summary>Coordinates of spawner</summary>
-	float x,y,z = 0;
+	float envX,envY,envZ = 0;
 
 	/// <summary>If distance between spites lower then overlapping will be</summary>
 	float overlappingRadius = 0;
@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour {
 	/// <summary>Counter for unsucessfull non-overlapping placements</summary>
 	int unsuccessfulAttempts = 0;
 
-	void Spawn (int i, ObjectType objectType)
+	void Spawn (int i, ObjectType objectType, float z)
 	{
 		//Select random prefab for instance
 		//int prefabIndex = Random.Range(0, objectType == ObjectType.ANIMAL ? animalPrefabs.Length : treesPrefabs.Length);
@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour {
 		//calculating distance from generated position to already generated position
 		Vector3 spawnPosition = new Vector3();
 		do{
-			spawnPosition = new Vector3 (x+Random.Range (-horizontalDistribution, horizontalDistribution), y+Random.Range (-verticalDistribution, verticalDistribution), z);
+			spawnPosition = new Vector3 (envX+Random.Range (-horizontalDistribution, horizontalDistribution), envY+Random.Range (-verticalDistribution, verticalDistribution), z);
 		}while(!(isNotIntersectedWithOthers(i,spawnPosition) || (unsuccessfulAttempts>allowOverlapingAfter && allowOverlapingAfter!=0)));
 
 		generatedObjects[i] = Instantiate(objectsPrefabs[prefabIndex], spawnPosition, transform.rotation) as GameObject;
@@ -92,7 +92,7 @@ public class Spawner : MonoBehaviour {
 		}
 		if (objectType == ObjectType.WATER) {
 			//задать размер и форму обьекта
-			generatedObjects[i].transform.localScale += new Vector3(Random.Range (0f, 4f),Random.Range (0f, 4f),Random.Range (0f, 4f));
+			generatedObjects[i].transform.localScale += new Vector3(Random.Range (0f, 2f),Random.Range (0f, 2f),z);
 		}
 		//generatedObjects [i] = Instantiate (objectType == ObjectType.ANIMAL ? animalPrefabs[prefabIndex] : treesPrefabs [prefabIndex], spawnPosition, transform.rotation) as GameObject;
 		//generatedObjects[i].transform.parent = transform.parent;
@@ -108,34 +108,48 @@ public class Spawner : MonoBehaviour {
 		return true;
 	}
 
+	protected float getOverlapingRadius(GameObject[] collection, float startRadius){
+		var overlappingRadiusStorage = startRadius;
+		for (int i=0; i<collection.Length; i++) {
+			GameObject obj = collection [i];
+			var radius = Mathf.Sqrt (Mathf.Pow (collection [i].renderer.bounds.size.x, 2) + Mathf.Pow (collection [i].renderer.bounds.size.y, 2));
+			if (overlappingRadius < radius) {
+				overlappingRadiusStorage = radius;
+			}
+		}
+		return overlappingRadiusStorage;
+	}
+
 	void Start ()
 	{
 		//Write spawner position
-		x = transform.position.x;
-		y = transform.position.y;
-		z = transform.position.z;
+		envX = transform.position.x;
+		envY = transform.position.y;
+		envZ = transform.position.z;
 
 		//Determine overllaping radius
 		//Approximate overllaping radius as highest _diameter_ of circumscribed circles around prefabs
-		for (int i=0; i<treesPrefabs.Length; i++) {
-			var radius = Mathf.Sqrt(Mathf.Pow(treesPrefabs[i].renderer.bounds.size.x,2)+Mathf.Pow(treesPrefabs[i].renderer.bounds.size.y,2));
-			if(overlappingRadius < radius){
-				overlappingRadius = radius;
-			}
-		}
+
+		overlappingRadius = getOverlapingRadius (waterPrefabs, overlappingRadius);
+		overlappingRadius = getOverlapingRadius (treesPrefabs, overlappingRadius);
+		overlappingRadius = getOverlapingRadius (animalPrefabs, overlappingRadius);
 
 		// Spawn objects
-		generatedObjects = new GameObject[treesGenerationCount];
-		for (int i=0; i<treesGenerationCount; i++) {
-			Spawn (i,ObjectType.PLANT);
-		}
-
-		for (int i=0; i<animalGenerationCount; i++) {
-			Spawn (i,ObjectType.ANIMAL);
-		}
-
+		generatedObjects = new GameObject[treesGenerationCount+waterGenerationCount+animalGenerationCount];
+		int objectCounter = 0;
+		//start creating environment
 		for (int i=0; i<waterGenerationCount; i++) {
-			Spawn (i,ObjectType.WATER);
+			Spawn (i,ObjectType.WATER,envZ-5);
 		}
+		objectCounter += waterGenerationCount;
+		for (int i=0; i<treesGenerationCount; i++) {
+			Spawn (i+objectCounter,ObjectType.PLANT,envZ-10);
+		}
+		objectCounter += treesGenerationCount;
+		//finish creating environment
+		for (int i=0; i<animalGenerationCount; i++) {
+			Spawn (i+objectCounter,ObjectType.ANIMAL,envZ-15);
+		}
+
 	}
 }

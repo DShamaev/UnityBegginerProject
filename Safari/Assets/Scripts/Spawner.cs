@@ -143,12 +143,12 @@ public class Spawner : MonoBehaviour {
 		}
 		objectCounter += waterGenerationCount;
 		for (int i=0; i<treesGenerationCount; i++) {
-			Spawn (i+objectCounter,ObjectType.PLANT,envZ+5);
+			Spawn (i+objectCounter,ObjectType.PLANT,envZ+7);
 		}
 		objectCounter += treesGenerationCount;
 		//finish creating environment
 		for (int i=0; i<animalGenerationCount; i++) {
-			Spawn (i+objectCounter,ObjectType.ANIMAL,envZ+5);
+			Spawn (i+objectCounter,ObjectType.ANIMAL,envZ+8);
 		}
 
 	}
